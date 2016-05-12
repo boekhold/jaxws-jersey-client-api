@@ -31,9 +31,13 @@ public class StockQuoteTest {
         
         QName STOCKQUOTE_QNAME = new QName("http://www.webserviceX.NET/", "StockQuote");
         StockQuote service = new StockQuote(wsdlLocation, STOCKQUOTE_QNAME);
+
+        // should use Jersey-based transport tube
         StockQuoteSoap port = service.getStockQuoteSoap(feature);
-        
         System.out.println(port.getQuote("TIBX.O"));
-        
+
+        // should use default transport pipe/tube
+        port = service.getStockQuoteSoap();
+        System.out.println(port.getQuote("TIBX.O"));
     }
 }
